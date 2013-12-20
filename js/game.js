@@ -37,7 +37,6 @@ var Game = function() {
    * Function that executes when it's clicked.
    */
   var clicked = function() {
-    alert("got here");
     // they clicked on appearing dot.
     var scoreWas = game.score;
 
@@ -83,6 +82,7 @@ var Game = function() {
     element.style.borderRadius = '50%';
     element.style.mozBorderRadius = '50%';
     element.style.webkitBorderRadius = '50%';
+
     this.find(LOC_CONTAINER).appendChild(element);
 
     if (element.addEventListener)

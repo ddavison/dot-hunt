@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Dot Hunt</title>
-  <link rel="stylesheet" type="text/css" href="css/main.css"/>
-  <script type="text/javascript" src="js/game.js"></script>
-  <script type="text/javascript">
-    // Create the game object!
-    window.game = new Game();
-  </script>
-</head>
-<body onload="game.init()">
-  <div id="mainContainer">
-
-    <div id="rightBar">
-      <div id="counterContainer">
-          <span id="score"></span>
+  <head>
+    <title>Dot Hunt</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript">
+      // Create the game object!
+      window.game = new Game();
+    </script>
+  </head>
+  <body onload="game.init()">
+    <div id="mainContainer">
+      <div id="rightBar">
+        <div id="counterContainer">
+            <span id="score"></span>
+        </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
