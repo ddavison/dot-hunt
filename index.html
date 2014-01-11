@@ -3,17 +3,29 @@
   <head>
     <title>Dot Hunt</title>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
     <script type="text/javascript">
       // Create the game object!
       window.game = new Game();
+      game.init();
     </script>
   </head>
   <body onload="game.init()">
-    <div id="mainContainer">
-      <div id="rightBar">
+    <audio id="pop" src="./sounds/pop.mp3" preload="auto"></audio>
+
+    <div id="mainContainer" class="container">
+      <span id="getReadyMessage"><!--get ready!--></span>
+      <div id="topBar">
         <div id="counterContainer">
-            <span id="score"></span>
+          <span id="score"></span>
+          <span id="multiplier"></span>
+        </div>
+
+        <div id="settings">
+          <input id="playSounds" type="checkbox" />
         </div>
       </div>
     </div>
