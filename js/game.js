@@ -8,14 +8,19 @@ var LOC_CONTAINER = "mainContainer";
 var LOC_MULTIPLIER = "multiplier";
 var LOC_POPSOUND = "pop";
 var LOC_GETREADYMSG = "getReadyMessage";
+var LOC_COUNTERCONTAINER = "counterContainer";
 
-var DEFAULT_TIMEOUT = 5000;
+var TIMEOUT = 5000;
 
-var Game = function() {
+var Game = (function() {
   this.debugging = true;
   this.name = "Dot Hunt";
 
   this.version = "1.0.0";
+
+  var hasStarted = false;
+
+  this.size = -1;
 
   /**
    * The player's score
@@ -37,8 +42,13 @@ var Game = function() {
 
   this.settings = null;
 
+  /**
+   * Calculates the timeout.
+   * @returns {number}
+   */
   var calculateTimeout = function() {
-    return DEFAULT_TIMEOUT; // later, it should calculate the score and reduce the time based on it.
+    if (TIMEOUT > 500) TIMEOUT -= 50;
+    return TIMEOUT;
   };
 
   var timer = null;
@@ -75,19 +85,24 @@ var Game = function() {
       if (game.debugging)
         console.log("Interval hit: resetting multiplier to x1");
 
-        game.multiplier = 1; // reset the multiplier.
+      // game over.
+      if (hasStarted) {
+        document.write("Game Over!\n\nYour score was: " + game.score + "\n\n(until i can think of a better way to show this.");
+        return;
+      }
+      else {
         game.newDot();
         game.update();
-
-    }, calculateTimeout());
+        hasStarted = true;
+      }
+    }, TIMEOUT);
   };
 
   /**
    * Pause the game.
    */
-  this.pause = function() {
+    this.pause = function() {
     clearInterval(timer);
-
   };
 
   /**
@@ -100,7 +115,10 @@ var Game = function() {
 
     // base the score on how small the dot is.
 
-    game.score += (100 * game.multiplier);
+    game.score += (game.multiplier * game.calculateScore(game.size));
+
+    // reduce the timeout per click.
+    TIMEOUT = calculateTimeout();
 
     game.multiplier += 1;
 
@@ -128,10 +146,34 @@ var Game = function() {
     }
   };*/
 
+  /**
+   * Fetches a random number between 0 and whatever you specify. (used for calculating circle sizes)
+   * @param to
+   * @returns {number}
+   */
   var getRandomNumber = function(to) {
     return Math.floor((Math.random() * to)+1);
   };
 
+  /**
+   * Calculate the score based on the circle size.
+   * @param size The size of the circle.
+   * @returns {number} the calculated score.
+   */
+  this.calculateScore = function(size) {
+    var max = 0;
+    if (document.body.clientWidth > document.body.clientHeight)
+      max = document.body.clientWidth;
+    else
+      max = document.body.clientHeight;
+
+    return Math.floor((1000 - (size/(max/1000))) + 100);
+  }
+
+  /**
+   * Creates a new dot on the page.
+   * @returns {HTMLElement}
+   */
   this.newDot = function() {
     if (this.debugging)
       console.log("creating new dot.");
@@ -165,10 +207,10 @@ var Game = function() {
 
     this.container.appendChild(element);
 
-      if (element.addEventListener)
-        element.addEventListener('click', clicked, false);
-      else if (element.attachEvent)
-      element.attachEvent('click', clicked);
+    if (element.addEventListener)
+      element.addEventListener('click', clicked, false);
+    else if (element.attachEvent)
+    element.attachEvent('click', clicked);
 
     element.style.width = width + "px";
     element.style.height = height + "px";
@@ -181,6 +223,8 @@ var Game = function() {
         width, height
       );
 
+    this.size = width;
+
     return element;
   };
 
@@ -191,6 +235,21 @@ var Game = function() {
   this.update = function() {
     this.find(LOC_SCORE).innerText = ""+this.score;
     this.find(LOC_MULTIPLIER).innerText = "x" + this.multiplier;
+
+    if (this.debugging) {
+      if (this.find("to")) this.find(LOC_COUNTERCONTAINER).removeChild(this.find("to"));
+      var toElement = document.createElement("span");
+      toElement.id = "to";
+      toElement.innerText = "(timeout: " + TIMEOUT + ")";
+      this.find(LOC_COUNTERCONTAINER).appendChild(toElement);
+
+      if (this.find("pause")) this.find(LOC_COUNTERCONTAINER).removeChild(this.find("pause"));
+      var pauseLink = document.createElement("a");
+      pauseLink.id = "pause";
+      pauseLink.href = "javascript:game.pause()";
+      pauseLink.innerText = "Pause";
+      this.find(LOC_COUNTERCONTAINER).appendChild(pauseLink);
+    }
   };
 
   /**
@@ -202,4 +261,4 @@ var Game = function() {
     if (id != null)
       return document.getElementById(id);
   };
-};
+});
