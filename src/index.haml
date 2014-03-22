@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %title Dot Hunt
+    %link{href: 'css/style.css', rel: 'stylesheet', type: 'text/css'}/
+    %script{src: 'js/game.js', type: 'text/javascript'}
+    / use some cdn libraries.
+    %script{src: 'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js', type: 'text/javascript'}
+    %script{src: 'http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js', type: 'text/javascript'}
+    %link{href: 'http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css', rel: 'stylesheet', type: 'text/css'}/
+    :javascript
+      // Create the game object!
+      window.game = new Game();
+      game.init();
+  %body{onload: 'game.init()'}
+    %audio#pop{preload: 'auto', src: './sounds/pop.mp3'}
+    #mainContainer.container
+      %span#getReadyMessage
+        / get ready!
+      #topBar
+        #counterContainer
+          %span#score
+          %span#multiplier
+        / #counterContainer
+        #settings
+          %input#playSounds{type: 'checkbox'}/
+        / #settings
+      / #topBar
+    / #mainContainer

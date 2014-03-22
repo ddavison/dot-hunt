@@ -1,0 +1,25 @@
+{
+  "name": "dot-hunt",
+  "version": "0.0.0",
+  "description": "Dot hunt game",
+  "main": "Gruntfile.coffee",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ddavison/dot-hunt.git"
+  },
+  "author": [
+    "Daniel Davison <sircapsalot@gmail.com>",
+    "Joel Worsham <joel.worsham@gmail.com>"
+  ],
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/ddavison/dot-hunt/issues"
+  },
+  "homepage": "https://github.com/ddavison/dot-hunt",
+  "devDependencies": {
+    "grunt": "~0.4.4"
+  }
+}
