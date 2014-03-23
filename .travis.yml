@@ -17,6 +17,6 @@ env:
 after_script:
   - git config credential.helper "store --file=.git/credentials"
   - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
-  - git add game
+  - git add -A game
   - git commit -m "Release"
   - git push -u origin master
