@@ -8,6 +8,8 @@ before_script:
   - npm install -g grunt-cli
   - git config --global user.name "travis-ci"
   - git config --global user.email "sircapsalot@gmail.com"
+  - git pull origin master
+  - git checkout master
 
 env:
   global:
@@ -18,4 +20,4 @@ after_script:
   - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
   - git add game
   - git commit -m "Release"
-  - git push
+  - git push -u origin master
