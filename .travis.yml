@@ -6,7 +6,9 @@ node_js:
 rvm:
   - 2.1.0
 
-before_install: gem install haml
+before_install:
+  - gem install haml
+  - gem install compass
 
 before_script:
   - rm -fr game
