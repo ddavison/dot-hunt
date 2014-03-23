@@ -3,8 +3,10 @@ node_js:
   - '0.10'
 before_script:
   - rm -rf node_modules
+  - rm -fr game
   - npm install
   - npm install -g grunt-cli
+
 env:
   global:
     secure: dL2QiBilmnq+EGKcyEpIAHTPM/ff70qpH9gA5nsHGySRv1MVAA+KOyDuYXFOwdGtj7pRWAd+GF6GrYIAJQmTv0schDMn7W4wC5EU5bh5oeWxX1y+XpDVyxdqtDETn35QG2V+uyS+ux8Iu0CTGe4dHgquciE1+9tF8xX/QuSVelc=
