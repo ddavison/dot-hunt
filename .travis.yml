@@ -1,16 +1,12 @@
-language:
-  - node_js
-  - ruby
-  - haml
+language: node_js
 
 node_js:
   - '0.10'
 
 rvm:
-  - "2.1.0"
+  - 2.1.0
 
-haml:
-  - "4.0.5"
+before_install: gem install haml
 
 before_script:
   - rm -fr game
