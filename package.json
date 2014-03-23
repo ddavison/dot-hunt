@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/ddavison/dot-hunt",
   "devDependencies": {
-    "grunt": "~0.4.4"
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-contrib-haml": "*",
+    "grunt-contrib-compass": "*",
+    "grunt-contrib-coffee": "*"
   }
 }
