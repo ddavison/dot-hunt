@@ -6,6 +6,8 @@ before_script:
   - rm -fr game
   - npm install
   - npm install -g grunt-cli
+  - git config --global user.name "travis-ci"
+  - git config --global user.email "sircapsalot@gmail.com"
 
 env:
   global:
@@ -14,6 +16,6 @@ env:
 after_script:
   - git config credential.helper "store --file=.git/credentials"
   - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
-  - git add dist
+  - git add game
   - git commit -m "Release"
   - git push
