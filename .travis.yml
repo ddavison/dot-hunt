@@ -1,6 +1,17 @@
-language: node_js
+language:
+  - node_js
+  - ruby
+  - haml
+
 node_js:
   - '0.10'
+
+rvm:
+  - "2.1.0"
+
+haml:
+  - "4.0.5"
+
 before_script:
   - rm -fr game
   - git config --global user.name "travis-ci"
@@ -10,6 +21,7 @@ before_script:
   - node ./node_modules/grunt-cli/bin/grunt
 
 env:
+  - "ruby=
   global:
     secure: dL2QiBilmnq+EGKcyEpIAHTPM/ff70qpH9gA5nsHGySRv1MVAA+KOyDuYXFOwdGtj7pRWAd+GF6GrYIAJQmTv0schDMn7W4wC5EU5bh5oeWxX1y+XpDVyxdqtDETn35QG2V+uyS+ux8Iu0CTGe4dHgquciE1+9tF8xX/QuSVelc=
 
