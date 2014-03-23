@@ -2,13 +2,12 @@ language: node_js
 node_js:
   - '0.10'
 before_script:
-  - rm -rf node_modules
   - rm -fr game
-  - npm install
-  - npm install -g grunt-cli
   - git config --global user.name "travis-ci"
   - git config --global user.email "sircapsalot@gmail.com"
   - git checkout master
+  - git remote add upstream https://github.com/ddavison/dot-hunt.git
+  - node ./node_modules/grunt-cli/bin/grunt
 
 env:
   global:
@@ -19,4 +18,4 @@ after_script:
   - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
   - git add -A game
   - git commit -m "Release"
-  - git push -u origin master
+  - git push -u upstream master
