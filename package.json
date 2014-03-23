@@ -4,7 +4,7 @@
   "description": "Dot hunt game",
   "main": "Gruntfile.coffee",
   "scripts": {
-    "test": "test"
+    "test": ""
   },
   "repository": {
     "type": "git",
