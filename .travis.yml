@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - '0.10'
+before_script:
+  - rm -rf node_modules
+  - npm install
+  - npm install -g grunt-cli
+env:
+  global:
+    secure: dL2QiBilmnq+EGKcyEpIAHTPM/ff70qpH9gA5nsHGySRv1MVAA+KOyDuYXFOwdGtj7pRWAd+GF6GrYIAJQmTv0schDMn7W4wC5EU5bh5oeWxX1y+XpDVyxdqtDETn35QG2V+uyS+ux8Iu0CTGe4dHgquciE1+9tF8xX/QuSVelc=
+
+after_script:
+  - git config credential.helper "store --file=.git/credentials"
+  - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+  - git add dist
+  - git commit -m "Release"
+  - git push
