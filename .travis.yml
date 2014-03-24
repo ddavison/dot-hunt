@@ -15,7 +15,7 @@ before_script:
 - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 - git config credential.helper "store --file=.git/credentials"
 - git push -u origin :release
-- git branch -D release
+#- git branch -D release # pulling specific branches, so this shouldn't even exist.
 - git checkout -b release
 - rm -fr game
 - git add -A game
