@@ -9,7 +9,7 @@ before_install:
 before_script:
 - 'echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config' # this is a workaround for pushing to github until the RSA fingerprint is added.
 - git config --global user.name "travis-ci"
-- git config --global user.email "sircapsalot@gmail.com"
+- git config --global user.email "daniel.jj.davison@gmail.com"
 - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 - git config credential.helper "store --file=.git/credentials"
 - git checkout master
