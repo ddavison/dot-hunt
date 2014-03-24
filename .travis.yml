@@ -9,18 +9,17 @@ before_install:
 before_script:
 - git config --global user.name "travis-ci"
 - git config --global user.email "sircapsalot@gmail.com"
-- git remote add upstream https://github.com/ddavison/dot-hunt.git
+- echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+- git config credential.helper "store --file=.git/credentials"
 - git checkout master
 - rm -fr game
 - git add -A game
 - git commit -m "Removing previous version."
 - node ./node_modules/grunt-cli/bin/grunt
 after_script:
-- git config credential.helper "store --file=.git/credentials"
-- echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 - git add -A game
 - git commit -m "Release."
-- git push -u upstream master
+- git push -u origin master
 
 env:
   global:
