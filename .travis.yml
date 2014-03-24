@@ -12,17 +12,21 @@ before_script:
 - git config --global user.email "daniel.jj.davison@gmail.com"
 - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 - git config credential.helper "store --file=.git/credentials"
-- git checkout gh-pages
+- git push -u origin :release
+- git branch -D release
+- git checkout -b release
 - rm -fr game
 - git add -A game
 - git commit -m "Removing previous version."
-- node ./node_modules/grunt-cli/bin/grunt
+
+script: node ./node_modules/grunt-cli/bin/grunt
+
 after_script:
 - git remote rm origin
 - git remote add origin https://github.com/ddavison/dot-hunt.git
 - git add -A game
 - git commit -m "Release."
-- git push -u origin master
+- git push -u origin release
 
 env:
   global:
