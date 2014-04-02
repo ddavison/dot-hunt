@@ -29,6 +29,6 @@ after_script:
 - git push -u origin "v$GAMEVERSION"
 
 env:
-  GAMEVERSION: 2.0.0 # up the revision number (2.0.X) version for a release.
+  GAMEVERSION: "2.0.0" # up the revision number (2.0.X) version for a release.
   global:
     secure: vsKWJU74S4t0Qbdf9yQaVG/dPmllCyiaWWMBul8tx4d6yZZB7CoKQ11p+DHhP0JOJRBgX/ZYJbbBuxniG6rWyuoEuWeFNyOO3ZApal7/R3A8Cnuo6wSa2V2DC1Cl6d5cDtJ3LBXcCQSDd2GAdKd3FglFYNTab2SJJWT4M2dmYvI=
