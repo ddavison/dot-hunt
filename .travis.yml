@@ -14,9 +14,7 @@ before_script:
 - git config --global user.email "daniel.jj.davison@gmail.com"
 - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 - git config credential.helper "store --file=.git/credentials"
-- git push -u origin :release
-- git branch -D release
-- git checkout -b release
+- git checkout master
 - rm -fr game
 - git add -A game
 - git commit -m "Removing previous version."
@@ -25,9 +23,10 @@ script: node ./node_modules/grunt-cli/bin/grunt
 
 after_script:
 - git add -A game
-- git commit -m "Release."
-- git push -u origin release
+- git commit -m "$VERSION"
+- git push -u origin master
 
 env:
+  VERSION: 2.0.0 # up the revision number (2.0.X) version for a release
   global:
     secure: vsKWJU74S4t0Qbdf9yQaVG/dPmllCyiaWWMBul8tx4d6yZZB7CoKQ11p+DHhP0JOJRBgX/ZYJbbBuxniG6rWyuoEuWeFNyOO3ZApal7/R3A8Cnuo6wSa2V2DC1Cl6d5cDtJ3LBXcCQSDd2GAdKd3FglFYNTab2SJJWT4M2dmYvI=
